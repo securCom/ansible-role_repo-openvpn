@@ -1,0 +1,6 @@
+---
+
+openvpn_repo_supported: true
+openvpn_repo_key: https://swupdate.openvpn.net/repos/repo-public.gpg
+openvpn_repo_dep:
+  - gnupg

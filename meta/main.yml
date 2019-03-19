@@ -1,0 +1,24 @@
+---
+galaxy_info:
+  role_name: repo_openvpn
+  author: Peter Hudec
+  description: manage openvpn official repository
+  company: securCom, a.s.
+  license: BSD
+  min_ansible_version: 2.4
+  platforms:
+    - name: Debian
+      versions:
+        - wheezy
+        - jessie
+        - stretch
+    - name: Ubuntu
+      versions:
+        - bionic
+        - xenial
+        - trusty
+  galaxy_tags:
+    - openvpn
+    - system
+    - repository
+dependencies: []

@@ -1,0 +1,37 @@
+---
+- name: "installing openvpn required packages"
+  apt:
+    name: "{{ package }}"
+    state: present
+  loop: "{{ openvpn_repo_dep }}"
+  loop_control:
+    loop_var: package
+  when: openvpn_repo_state
+
+- name: "importing openvpn gpg key"
+  apt_key:
+    state: present
+    keyring: /etc/apt/trusted.gpg.d/openvpn.gpg
+    url: "{{ openvpn_repo_key }}"
+  when: openvpn_repo_state
+
+- name: "add openvpn repository"
+  template:
+    src: "repository-debian.j2"
+    dest: /etc/apt/sources.list.d/openvpn.list
+    owner: root
+    group: root
+    mode: 0644
+  when: openvpn_repo_state
+  register: openvpn_repo_changed
+
+- name: "update debian repository cache"  # noqa 503
+  apt:
+    update_cache: true
+  when: openvpn_repo_changed.changed
+
+- name: "remove openvpn repository"
+  file:
+    path: /etc/apt/sources.list.d/openvpn.list
+    state: absent
+  when: not openvpn_repo_state

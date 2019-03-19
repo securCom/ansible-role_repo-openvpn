@@ -1,0 +1,10 @@
+---
+nginx_repo_map_os:
+  'CentOS': 'centos'
+  'RedHat': 'rhel'
+  'Debian': 'debian'
+  'Ubuntu': 'ubuntu'
+
+nginx_repo_map_version:
+  'stable': ''
+  'mainline': 'mainline/'
